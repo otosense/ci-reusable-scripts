@@ -65,3 +65,7 @@ runs:
     - name: Format source code
       run: black  --line-length=88 .
       shell: bash
+
+    - name: Test
+        run: pytest --doctest-modules -v -s ${{ vars.PROJECT_NAME }}
+        shell: bash
