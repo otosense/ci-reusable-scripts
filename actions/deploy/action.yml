@@ -3,7 +3,7 @@ description: "Deploy"
 inputs:
   python-version:
     description: "Python version"
-    required: false
+    required: true
     default: "3.11"
   python_packages:
     description: "Python packages"
@@ -95,7 +95,7 @@ runs:
     - name: set env for host
       uses: otosense/ci-script-set-variable-for-host@v1
       with:
-        CI_COMMIT_BRANCH: ${GITHUB_REF##*/}
+        CI_COMMIT_BRANCH: ${{ inputs.CI_COMMIT_BRANCH }}
         DEV_ENV_HOST_IP: ${{ inputs.DEV_ENV_HOST_IP }}
         DEV_MONGODB__DATABASE_NAME : ${{ inputs.DEV_MONGODB__DATABASE_NAME }}
         DEV_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.DEV_AZURESTORAGE__CONTAINER_NAME }}

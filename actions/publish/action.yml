@@ -3,7 +3,7 @@ description: "Publish"
 inputs:
   python-version:
     description: "Python version"
-    required: false
+    required: true
     default: "3.11"
   PROJECT_NAME:
     description: Project name
@@ -17,6 +17,16 @@ inputs:
   PYPI_PASSWORD:
     description: "PYPI PASSWORD"
     required: false
+  GIT_USER_EMAIL:
+    description: "Git User Email"
+    required: true
+  GIT_USER_NAME:
+    description: "Git User Name"
+    required: true
+  python_packages:
+    description: "Python packages"
+    required: true
+  
     
 runs:
   using: composite
@@ -27,8 +37,8 @@ runs:
 
       - name: Configure Git
         run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          git config --global user.email "${{ inputs.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ inputs.GIT_USER_NAME }}"
         shell: bash
 
       - name: Set up Python ${{ inputs.python-version }}
@@ -43,9 +53,12 @@ runs:
         shell: bash
 
       - name: Install dependencies
+        uses: otosense/ci-reusable-scripts/actions/intstall-packages@v1
+        with:
+          python_packages: ${{ inputs.python_packages }}
+
+      - name: Install requires
         run: |
-          python -m pip install --upgrade pip
-          pip -q install axblack twine epythet wads
           ${{ inputs.PROJECT_NAME }} install-requires
         shell: bash
 
