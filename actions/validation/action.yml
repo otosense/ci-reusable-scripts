@@ -67,5 +67,5 @@ runs:
       shell: bash
 
     - name: Test
-        run: pytest --doctest-modules -v -s ${{ vars.PROJECT_NAME }}
+        run: pytest --doctest-modules -v -s ${{ inputs.PROJECT_NAME }}
         shell: bash
