@@ -54,7 +54,7 @@ runs:
       uses: actions/setup-node@v2.5.1
 
     - name: Install dependencies
-      uses: otosense/ci-reusable-scripts/actions/intstall-packages@v1
+      uses: actions/intstall-packages/action.yml
       with:
         python_packages: ${{ inputs.python_packages }}
         apt_packages: ${{ inputs.apt_packages }}
