@@ -84,7 +84,7 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: Install dependencies
-      uses: otosense/ci-reusable-scripts/actions/install-packages@v9
+      uses: otosense/ci-reusable-scripts/actions/install-packages@v1
       with:
         python_packages: ${{ inputs.python_packages }}
 
