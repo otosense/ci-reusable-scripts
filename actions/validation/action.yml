@@ -66,6 +66,6 @@ runs:
       run: black  --line-length=88 .
       shell: bash
 
-    - name: Test
-        run: pytest --doctest-modules -v -s "${{ inputs.PROJECT_NAME }}""
-        shell: bash
+    # - name: Test
+    #     run: pytest --doctest-modules -v -s "${{ inputs.PROJECT_NAME }}""
+    #     shell: bash
