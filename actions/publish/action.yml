@@ -8,9 +8,6 @@ inputs:
   PROJECT_NAME:
     description: Project name
     required: false
-  version:
-    description: "version"
-    required: false
   PYPI_USERNAME: 
     description: "PYPI USERNAME"
     required: false
@@ -59,7 +56,7 @@ runs:
 
       - name: Install requires
         run: |
-          ${{ inputs.PROJECT_NAME }} install-requires
+          isee install-requires
         shell: bash
 
       - name: Format source code
@@ -68,9 +65,9 @@ runs:
 
       - name: Update version number
         run: |
-          export VERSION=${{ inputs.version }}
+          export VERSION=$(isee gen-semver)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          ${{ inputs.PROJECT_NAME }} update-setup-cfg
+          isee update-setup-cfg
         shell: bash
 
       - name: Package
@@ -86,6 +83,6 @@ runs:
         run: pack check-in "**CI** Formatted code + Updated version number and documentation. [skip ci]" --auto-choose-default-action --bypass-docstring-validation --bypass-tests --bypass-code-formatting --verbose
         shell: bash
 
-      # - name: Tag Repository
-      #   run: isee tag-repo $VERSION
-      #   shell: bash
+      - name: Tag Repository
+        run: isee tag-repo $VERSION
+        shell: bash
