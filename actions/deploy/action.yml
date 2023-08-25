@@ -99,7 +99,7 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: Install dependencies
-      uses: otosense/ci-reusable-scripts/actions/install-packages@v1
+      uses: otosense/ci-reusable-scripts/actions/install-packages@master
       with:
         python_packages: ${{ inputs.python_packages }}
         apt_packages: ${{ inputs.apt_packages }}
@@ -112,7 +112,7 @@ runs:
       shell: bash
       
     - name: set env for host
-      uses: otosense/ci-script-set-variable-for-host@v1
+      uses: otosense/ci-script-set-variable-for-host@master
       with:
         CI_COMMIT_BRANCH: ${{ inputs.CI_COMMIT_BRANCH }}
         HOST_IP: ${{ inputs.HOST_IP }}
